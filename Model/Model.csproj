@@ -47,7 +47,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IQueryRepository.cs" />
     <Compile Include="Query.cs" />
+    <Compile Include="QueryRepository.cs" />
     <Compile Include="YagoQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

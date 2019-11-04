@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace View
+namespace Thesis
 {
-    public interface IqueryView
+    public interface IQueryRepository
     {
     }
 }

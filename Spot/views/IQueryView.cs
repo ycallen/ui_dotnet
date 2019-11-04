@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controller
+namespace Spot
 {
     public interface IQueryView
     {
-        void SetController(QueryPresenter controller);
+
+        QueryPresenter Presenter { set; }
+
+        void UpdateView(DataTable table, string query, int index, int max);
     }
 }

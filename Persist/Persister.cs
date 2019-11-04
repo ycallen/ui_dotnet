@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Persist
+namespace Thesis
 {
     [Serializable]
     public static class Persister

@@ -3,9 +3,9 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace UI
+namespace Spot
 {
-    partial class Form1
+    partial class QueryForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@ namespace UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryForm));
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Query = new System.Windows.Forms.TabPage();
@@ -43,6 +43,7 @@ namespace UI
             this.foward = new System.Windows.Forms.ToolStripButton();
             this.erase = new System.Windows.Forms.ToolStripButton();
             this.run = new System.Windows.Forms.ToolStripButton();
+            this.wand = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
@@ -88,7 +89,6 @@ namespace UI
             this.Query.Size = new System.Drawing.Size(905, 30);
             this.Query.TabIndex = 0;
             this.Query.Text = "Query";
-            this.Query.Click += new System.EventHandler(this.Query_Click_1);
             // 
             // toolStrip2
             // 
@@ -97,11 +97,12 @@ namespace UI
             this.back,
             this.foward,
             this.erase,
-            this.run});
+            this.run,
+            this.wand});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip2.Size = new System.Drawing.Size(104, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(158, 25);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -148,6 +149,17 @@ namespace UI
             this.run.Text = "run";
             this.run.Click += new System.EventHandler(this.run_Click);
             // 
+            // wand
+            // 
+            this.wand.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.wand.Image = ((System.Drawing.Image)(resources.GetObject("wand.Image")));
+            this.wand.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.wand.Name = "wand";
+            this.wand.Size = new System.Drawing.Size(23, 22);
+            this.wand.Text = "toolStripButton1";
+            this.wand.ToolTipText = "wand";
+            this.wand.Click += new System.EventHandler(this.wand_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -157,7 +169,6 @@ namespace UI
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(917, 222);
             this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DataGridView1_RowPostPaint);
             // 
             // directorySearcher1
@@ -184,15 +195,14 @@ namespace UI
             // 
             // label2
             // 
-            this.label2.Image = global::View.Properties.Resources.icons8_search_16__1_1;
+            this.label2.Image = global::View.Properties.Resources.icons8_search_16__1_2;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.Location = new System.Drawing.Point(7, 363);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 25);
             this.label2.TabIndex = 7;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // Form1
+            // QueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -205,10 +215,9 @@ namespace UI
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "QueryForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SparqlUI";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.Query.ResumeLayout(false);
             this.Query.PerformLayout();
@@ -223,7 +232,7 @@ namespace UI
         
         private void RichTextBox3_TextChanged(object sender, EventArgs e)
         {
-            if(dataGridView1.DataSource != null)
+            if((dataGridView1.DataSource as DataTable).Rows.Count > 0)
             {
                 (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("[invisible] LIKE '%{0}%'", richTextBox3.Text);
             }            
@@ -263,6 +272,7 @@ namespace UI
         private Label label1;
         private Label label2;
         private ToolStripButton erase;
+        private ToolStripButton wand;
     }
 }
 

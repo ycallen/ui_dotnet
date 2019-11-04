@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UI
+namespace Spot
 {
     static class Program
     {
@@ -14,10 +14,16 @@ namespace UI
         [STAThread]
         static void Main()
         {
-            var presenter = new QueryPresenter(view, repository);
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            var repository = new QueryRepository();
+            var view = new QueryForm();
+
+            var presenter = new QueryPresenter(view, repository);
+            
+            Application.Run(view);
         }
     }
 }
