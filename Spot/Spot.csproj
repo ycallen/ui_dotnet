@@ -120,8 +120,8 @@
     <None Include="Resources\icons8-search-16 %281%29.png" />
     <None Include="Resources\icons8-search-16 %281%291.png" />
     <None Include="Resources\icons8-search-16 %281%292.png" />
-    <Content Include="run.ico" />
-    <Content Include="SES.png" />
+    <Content Include="Resources\run.ico" />
+    <Content Include="Resources\SES.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="save\" />
