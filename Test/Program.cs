@@ -43,6 +43,7 @@ namespace Test
                     //new Uri("Add server 3 address")
                 };
 
+
                 connectionPool = new StaticConnectionPool(nodes);
                 connectionSettings = new ConnectionSettings(connectionPool);
                 elasticClient = new ElasticClient(connectionSettings);
@@ -50,7 +51,7 @@ namespace Test
                                     .Index("*")
                                     .Size(10000)
                                     .Query(q => q
-                                        .Match(m => m.Field("subject").Query("Albert_Einstein")
+                                        .Match(m => m.Field("object").Query("Daniel Jurafsky")
                                         )));
 
             }

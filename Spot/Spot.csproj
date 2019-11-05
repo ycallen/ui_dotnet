@@ -74,9 +74,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="models\IQueryRepository.cs" />
-    <Compile Include="models\QueryDM.cs" />
-    <Compile Include="models\QueryRepository.cs" />
+    <Compile Include="models\Query\IQueryRepository.cs" />
+    <Compile Include="models\Query\QueryDM.cs" />
+    <Compile Include="models\Query\QueryRepository.cs" />
+    <Compile Include="presenters\OperationPresenter.cs" />
     <Compile Include="presenters\QueryPresenter.cs" />
     <Compile Include="views\QueryForm.cs">
       <SubType>Form</SubType>
