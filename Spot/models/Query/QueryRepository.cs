@@ -784,7 +784,7 @@ namespace Spot
             DeleteFoward();
             LL.AddLast(new QueryDM(rows, columns, query));
             SaveQuery();
-            Index++;]]]]]]]]]]]]]]
+            Index++;
 
 
 
