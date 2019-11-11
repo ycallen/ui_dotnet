@@ -24,15 +24,7 @@ namespace Spot
             Obj = obj;
         }
 
-        public bool IsParameter(String item)
-        {
-            if(item[0].Equals("?"))
-            {
-                return true;
-            }
-            return false;
-        }
-
+        
         public string GetTripleFields()
         {
             StringBuilder sb = new StringBuilder();

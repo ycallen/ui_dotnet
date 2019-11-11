@@ -42,24 +42,31 @@ namespace Spot
 
             connectionPool = new StaticConnectionPool(nodes);
             connectionSettings = new ConnectionSettings(connectionPool);
-            elasticClient = new ElasticClient(connectionSettings);         
-            var searchResult = elasticClient.Search<DocumentDM>(s => s
-                                .Size(500)
-                                .Index("*")
-                                .Query(q => q
-                                    .MultiMatch(m => m
-                                        //get fields that are not variables
-                                        .Fields(doc.GetTripleFields().Split(' ').ToList<string>().Select(x => new Field(x)).ToArray())
-                                        //.Fields(f=> f
-                                        //        .Field("subject")
-                                        //        .Field("predicate")
-                                        //        .Field("object"))
-                                        //get text that is not variables
-                                        .Query(doc.GetTripleText())
-                                    )
-                                )
-                            );
+            elasticClient = new ElasticClient(connectionSettings);
+            //var searchResult = elasticClient.Search<DocumentDM>(s => s
+            //                    .Size(500)
+            //                    .Index("*")
+            //                    .Query(q => q
+            //                        .MultiMatch(m => m
+            //                            //get fields that are not variables
+            //                            .Fields(doc.GetTripleFields().Split(' ').ToList<string>().Select(x => new Field(x)).ToArray())
+            //                            //.Fields(f=> f
+            //                            //        .Field("subject")
+            //                            //        .Field("predicate")
+            //                            //        .Field("object"))
+            //                            //get text that is not variables
+            //                            .Query(doc.GetTripleText())
+            //                        )
+            //                    )
+            //                );
 
+            BoolQueryDescriptor<DocumentDM> boolQuery = ExactQuery(doc);
+
+            var searchResult = elasticClient.Search<DocumentDM>(s => s
+                .Size(500)
+                .Index("*")
+                .Query(q => q.Bool(b => boolQuery))
+            );
 
             table.Columns.Add("subject", typeof(String));
             table.Columns.Add("predicate", typeof(String));
@@ -120,6 +127,29 @@ namespace Spot
             //                        .Match(m => m.Field("object").Query(doc.Obj)
             //                        )));
             //}
+        }
+
+        private static BoolQueryDescriptor<DocumentDM> ExactQuery(DocumentDM doc)
+        {
+            var boolQuery = new BoolQueryDescriptor<DocumentDM>();
+            //ex
+            boolQuery.Must(mu => mu
+                .Match(m => !doc.Subject[0].Equals('?') ? m
+                    .Field(f => f.Subject)
+                    .Query(doc.Subject) : m
+                ), mud => mud
+                .Match(m => !doc.Predicate[0].Equals('?') ? m
+                    .Field(f => f.Predicate)
+                    .Query(doc.Predicate) : m
+                ),
+                mud => mud
+                .Match(m => !doc.Obj[0].Equals('?') ? m
+                    .Field(f => f.Obj)
+                    .Query(doc.Obj) : m
+                )
+
+            );
+            return boolQuery;
         }
 
         private string getName(PatternItem item)
