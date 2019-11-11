@@ -10,14 +10,14 @@ namespace Spot
     public class QueryPresenter
     {
 
-        private readonly IQueryView _view;
+        private readonly IView _view;
         private readonly IQueryRepository _repository;
 
 
-        public QueryPresenter(IQueryView view, IQueryRepository repository)
+        public QueryPresenter(IView view, IQueryRepository repository)
         {
             _view = view;
-            view.Presenter = this;
+            view.QueryPresenter = this;
             _repository = repository;
             UpdateQueryView();
         }
@@ -49,11 +49,7 @@ namespace Spot
             _view.UpdateView(table2, query2, index2, max2);
         }
 
-        public void Wand(string query)
-        {
-
-        }
-
+        
         public void ClearRepository()
         {
             _repository.ClearRepository();
@@ -65,11 +61,6 @@ namespace Spot
         {
             (DataTable table, string query, int index, int max) = _repository.GetCurrent();
             _view.UpdateView(table, query, index, max);
-        }
-
-        public void SaveQuery()
-        {
-
         }
     }
 }

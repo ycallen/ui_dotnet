@@ -4,25 +4,25 @@ using System.Windows.Forms;
 
 namespace Spot
 {
-    public partial class QueryForm : Form, IQueryView
+    public partial class Form : System.Windows.Forms.Form, IView
     {
 
-        public QueryForm()
+        public Form()
         {
             InitializeComponent();
         }
 
 
-        public QueryPresenter Presenter { private get; set; }
+        public QueryPresenter QueryPresenter { private get; set; }
+        public OperationPresenter OperationPresenter { private get; set; }
 
-        
         private void run_Click(object sender, EventArgs e)
         {
             string query = richTextBox2.Text;
             richTextBox3.Text = "";
             try
             {
-                Presenter.ExecuteQuery(query);
+                QueryPresenter.ExecuteQuery(query);
                 back.Enabled = true;
                 foward.Enabled = false;
             }
@@ -37,19 +37,28 @@ namespace Spot
         
         private void backward_Click(object sender, EventArgs e)
         {
-            Presenter.GetPrevious();
+            QueryPresenter.GetPrevious();
             foward.Enabled = true;
         }
 
         private void foward_Click(object sender, EventArgs e)
         {
-            Presenter.GetNext();
+            QueryPresenter.GetNext();
             back.Enabled = true;
         }
 
         private void erase_Click(object sender, EventArgs e)
         {
-            Presenter.ClearRepository();
+            QueryPresenter.ClearRepository();
+        }
+
+        public void UpdateView(DataTable table)
+        {
+            richTextBox3.Enabled = true;
+            dataGridView1.DataSource = table;
+            dataGridView1.Columns["invisible"].Visible = false;
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.Show();
         }
 
         public void UpdateView(DataTable table, string query, int index, int max)
@@ -74,9 +83,8 @@ namespace Spot
             else
             {
                 richTextBox3.Enabled = true;
-
+                dataGridView1.Columns["invisible"].Visible = false;
             }
-
             richTextBox2.Text = query;
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.Show();
@@ -85,8 +93,7 @@ namespace Spot
         private void wand_Click(object sender, EventArgs e)
         {
             string query = richTextBox2.Text;
-            Presenter.Wand(query);
-            
+            OperationPresenter.Wand(query);
         }
     }
 }

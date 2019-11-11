@@ -74,22 +74,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="models\Operation\IOperationRepository.cs" />
+    <Compile Include="models\Operation\OperationRepository.cs" />
+    <Compile Include="models\Operation\DocumentDM.cs" />
     <Compile Include="models\Query\IQueryRepository.cs" />
     <Compile Include="models\Query\QueryDM.cs" />
     <Compile Include="models\Query\QueryRepository.cs" />
+    <Compile Include="models\Query\TriplesDM.cs" />
     <Compile Include="presenters\OperationPresenter.cs" />
     <Compile Include="presenters\QueryPresenter.cs" />
-    <Compile Include="views\QueryForm.cs">
+    <Compile Include="views\Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\QueryForm.Designer.cs">
-      <DependentUpon>QueryForm.cs</DependentUpon>
+    <Compile Include="views\Form.Designer.cs">
+      <DependentUpon>Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\IQueryView.cs" />
+    <Compile Include="views\IView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="views\QueryForm.resx">
-      <DependentUpon>QueryForm.cs</DependentUpon>
+    <EmbeddedResource Include="views\Form.resx">
+      <DependentUpon>Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

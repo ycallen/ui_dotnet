@@ -21,8 +21,5 @@ namespace Spot
 
         void DecIndex();
 
-        bool IsFirst();
-
-        bool IsLast();
     }
 }

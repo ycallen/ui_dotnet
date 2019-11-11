@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Spot
 {
-    partial class QueryForm
+    partial class Form
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@ namespace Spot
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Query = new System.Windows.Forms.TabPage();

@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace Spot
 {
-    public interface IQueryView
+    public interface IView
     {
 
-        QueryPresenter Presenter { set; }
+        QueryPresenter QueryPresenter { set; }
+
+        OperationPresenter OperationPresenter { set; }
 
         void UpdateView(DataTable table, string query, int index, int max);
+
+        void UpdateView(DataTable table);
     }
 }

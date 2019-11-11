@@ -18,11 +18,16 @@ namespace Spot
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var repository = new QueryRepository();
-            var view = new QueryForm();
-
-            var presenter = new QueryPresenter(view, repository);
             
+            var view = new Form();
+
+            var queryRepository = new QueryRepository();
+            var queryPresenter = new QueryPresenter(view, queryRepository);
+
+            var operationRepository = new OperationRepository();
+            var operationPresenter = new OperationPresenter(view, operationRepository);
+
+
             Application.Run(view);
         }
     }
